@@ -29,7 +29,6 @@ const Banner = () => {
   const truncate = (str, n) => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   };
-  console.log(movie);
   if (!isClicked) {
     return (
       <header
@@ -45,12 +44,15 @@ const Banner = () => {
             {movie.title || movie.name || movie.original_name}
           </h1>
           <div className="banner__buttons">
-            <button
-              className="banner__button play"
-              onClick={() => setIsClicked(true)}
-            >
-              Play
-            </button>
+            {movie.videos?.results[0] ? (
+              <button
+                className="banner__button play"
+                onClick={() => setIsClicked(true)}
+              >
+                Play
+              </button>
+            ) : null}
+
             <button className="banner__button info">More Information</button>
           </div>
           <h1 className="banner__description">
